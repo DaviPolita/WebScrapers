@@ -6,8 +6,7 @@
 import scrapy
 
 
-class TutorialItem(scrapy.Item):
+class NovenoveLojasMedItem(scrapy.Item):
     # define the fields for your item here like:
-    title = scrapy.Field()
-    author = scrapy.Field()
-    tag = scrapy.Field()
+    # name = scrapy.Field()
+    pass

@@ -8,6 +8,10 @@ import scrapy
 
 class TutorialItem(scrapy.Item):
     # define the fields for your item here like:
-    title = scrapy.Field()
-    author = scrapy.Field()
-    tag = scrapy.Field()
+    titulo = scrapy.Field()
+    preço = scrapy.Field()
+    url = scrapy.Field()
+    desc_curta = scrapy.Field()
+    loja = scrapy.Field()
+    categoria_1 = scrapy.Field()
+    categoria_2 = scrapy.Field()
