@@ -13,10 +13,12 @@ class LojaDMSpider(scrapy.Spider):
 
         all_div = response.css(".material-medico")
         for div in all_div:
-            item["titulo"] = div.css(".fs-18::text").get(default="Vazio")
-            item["preço"] = div.css(".lh-10::text").get(default="Vazio")
+            item["titulo"] = div.css(
+                ".fs-18::text").get(default="Vazio").strip()
+            item["preço"] = div.css(
+                ".lh-10::text").get(default="Vazio").strip()
             item["url"] = div.css(
-                ".no-gutters").xpath('@href').get(default="Vazio")
+                ".no-gutters::attr(href)").get(default="Vazio")
             item2 = item.copy()
             yield response.follow(item["url"], callback=self.parse2, meta={'item': item2})
 
@@ -24,7 +26,7 @@ class LojaDMSpider(scrapy.Spider):
         item = response.meta['item']
 
         item["desc_curta"] = response.css(
-            ".productDescriptionShort::text").get(default="Vazio")
+            ".productDescriptionShort::text").get(default="Vazio").strip()
         item["loja"] = response.css(
             ".bread-crumb li:nth-child(1) span::text").get(default="Vazio")
         item["categoria_1"] = response.css(
