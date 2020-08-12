@@ -21,3 +21,6 @@ class NovenovereidoarmarinhoItem(scrapy.Item):
     categoria_2 = scrapy.Field()
     categoria_3 = scrapy.Field()
     categoria_4 = scrapy.Field()
+
+
+# teste

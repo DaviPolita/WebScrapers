@@ -86,3 +86,4 @@ class NovenovereidoarmarinhoPipelineSQL:
                           image_2
                           ))
         self.conn.commit()
+# teste

@@ -72,3 +72,4 @@ class LojaDMSpider(scrapy.Spider):
 
 
 # x = list(set(response.xpath('//*[(@id = "botaoZoom")]/@rel').getall()))
+# teste
