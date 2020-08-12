@@ -8,6 +8,9 @@ import scrapy
 
 class NovenovereidoarmarinhoItem(scrapy.Item):
     # define the fields for your item here like:
+
+    images = scrapy.Field()
+    image_urls = scrapy.Field()
     titulo = scrapy.Field()
     url = scrapy.Field()
     preço = scrapy.Field()

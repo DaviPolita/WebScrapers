@@ -29,6 +29,7 @@ class LojaDMSpider(scrapy.Spider):
             all_url = response.css(".product-name a::attr(href)").getall()
 
             if all_url:
+                # if self.next_page < 3:
                 for url in all_url:
                     item["url"] = url
                     item2 = item.copy()
@@ -64,6 +65,8 @@ class LojaDMSpider(scrapy.Spider):
             "#box-bread-brumb li:nth-child(4) span::text").get(default="Vazio")
         item["categoria_4"] = response.css(
             "#box-bread-brumb li:nth-child(5) span::text").get(default="Vazio")
+        item["image_urls"] = list(
+            set(response.xpath('//*[(@id = "botaoZoom")]/@rel').getall()))
 
         yield item
 

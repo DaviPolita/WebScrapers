@@ -33,21 +33,44 @@ class NovenovereidoarmarinhoPipelineSQL:
                 categoria_1 TEXT,
                 categoria_2 TEXT,
                 categoria_3 TEXT,
-                categoria_4 TEXT
+                categoria_4 TEXT,
+                imagem_1 TEXT,
+                imagem_2 TEXT
             )""")
 
     def process_item(self, item, spider):
         self.store_db(item)
         return item
 
+    # def name_img(item):
+    #     if len(item["images"]) == 1:
+    #         image_1 = item["images"][0]["path"]
+    #         image_2 = ""
+    #         return [image_1, image_2]
+    #     else:
+    #         image_1 = item["images"][0]["path"]
+    #         image_2 = item["images"][1]["path"]
+    #         return [image_1, image_2]
+
     def store_db(self, item):
         # tranforma uma lista de str em uma unica str
         desc = " ".join(item["descrição"])
         desc = desc.replace(" .", "")
 
+        image_1 = ""
+        image_2 = ""
+
+        if len(item["images"]) == 1:
+            image_1 = item["images"][0]["path"]
+            image_2 = ""
+
+        if len(item["images"]) > 1:
+            image_1 = item["images"][0]["path"]
+            image_2 = item["images"][1]["path"]
+
         self.curr.execute("""
             INSERT INTO produtos_tb 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                           item["titulo"],
                           item["preço"],
@@ -58,6 +81,8 @@ class NovenovereidoarmarinhoPipelineSQL:
                           item["categoria_1"],
                           item["categoria_2"],
                           item["categoria_3"],
-                          item["categoria_4"]
+                          item["categoria_4"],
+                          image_1,
+                          image_2
                           ))
         self.conn.commit()
